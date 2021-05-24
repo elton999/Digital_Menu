@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   
+  resources :users
+  resources :tables
+  resources :categories
+  resources :dishes
+
   devise_for :users, skip: [:sessions, :registrations, :passwords]
 
   devise_scope :user do

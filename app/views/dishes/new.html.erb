@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col s4 push-s4">
+      <%unless @categories && @categories.count > 0 %>
+            <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                    <p> You should register a category first. <%= link_to "Click here", new_category_path %> to create a new one. </p>
+                </div>
+            </div>
+        <%else%>
+            <h2>Register a new dish on the menu</h2>
+            <%= form_for @dish do |f| %>
+                <p>
+                    <%= f.label :name, "Name" %>
+                    <%= f.text_field :name %>
+                </p>
+
+                <p>
+                    <%= f.label :description, "Description" %> <br />
+                    <%= f.text_area :description %>
+                </p>
+
+                <p>
+                    <%= f.label :category %> </p>
+                    <%= f.select :category_id, @categories.map {|category| [category.name, category.id]} %>
+                </p>
+
+                <p>
+                    <%= f.submit "Create", class: "waves-effect waves-light btn" %>
+                </p>
+
+            <%end%>
+      <%end%>
+  </div>
+</div>

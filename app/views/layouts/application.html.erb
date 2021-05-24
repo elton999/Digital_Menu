@@ -1,29 +1,50 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MenuDigital</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Menu Digital</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
      <!--Import Google Icon Font-->
      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
      
      <!-- Compiled and minified CSS -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-     <!-- Compiled and minified JavaScript -->
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </head>
 
   <body>
-    <% if current_user.present? %>
-      <%= link_to "logout", destroy_user_session_path, method: 'delete' %>
-    <% end %>
     <div class="container">
+      <% if current_user.present? %>
+
+        <nav>
+          <div class="nav-wrapper">
+            <a href="#" class="brand-logo">Menu Digital</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li><a href="#">The menu</a></li>
+              <li><%= link_to "Categories", categories_path %></li>
+              <li><%= link_to "Tables", tables_path %></li>
+              <li><%= link_to "Users", users_path %></li>
+              <li><%= link_to "logout", destroy_user_session_path, method: 'delete' %></li>
+            </ul>
+          </div>
+        </nav>
+        <br />
+      <% end %>
       <%= yield %>
     </div>
   </body>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+   <!-- Compiled and minified JavaScript -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+   $(document).ready(function(){
+    $('select').formSelect();
+  });
+
+</script>
 </html>
