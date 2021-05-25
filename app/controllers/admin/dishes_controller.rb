@@ -1,14 +1,10 @@
-class DishesController < ApplicationController
+class Admin::DishesController < ApplicationController
     before_action :authenticate_user!
     before_action :user_is_admin?
-    before_action :get_all_categories, only: [:new, :create]
+    before_action :get_all_categories
     
     def index
         @dishes = Dish.all
-        if current_user.admin
-            render :index
-            # do view for clients
-        end
     end
 
     def new

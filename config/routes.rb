@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
-  
+
   resources :users
-  resources :tables
-  resources :categories
-  resources :dishes
+  resources :tables, only: [:index]
+  resources :categories, only: [:index]
+  resources :orders
+
+  # admin
+  namespace :admin do 
+    resources :users, :tables, :categories, :dishes
+  end
 
   devise_for :users, skip: [:sessions, :registrations, :passwords]
 

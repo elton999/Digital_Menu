@@ -1,25 +1,10 @@
 <div class="row">
     <div class="col s12">
-        <h2>Tables</h2>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>number of table</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <% @tables.each do |table| %>
-                    <tr>
-                        <td><%= table.number%></td>
-                        <td></td>
-                    </tr>
-                <%end%>
-            </tbody>
-        </table>
-        <div class="fixed-action-btn">
-            <a class="btn-floating btn-large waves-effect waves-light red" href="<%= new_table_path %>"><i class="material-icons">add</i></a>
-        </div>
+        <h2>Select a table</h2>
     </div>
+</div>
+<div class="row">
+    <% @tables.each do |table| %>
+        <%= link_to table.number, categories_path(table_id: table.id), class: "col s12 m2 z-depth-3 waves-effect waves-light btn-large" %>
+    <% end %>
 </div>

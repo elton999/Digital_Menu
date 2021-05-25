@@ -1,26 +1,16 @@
 class CategoriesController < ApplicationController
     before_action :authenticate_user!
-    before_action :user_is_admin?, except: [:index]
+    before_action :get_table
     
     def index
-        @categories = Category.all    
-    end
-
-    def new
-        @category = Category.new
-    end
-
-    def create
-        @category = Category.new params_category
-        if @category.save
-            redirect_to  categories_path
-        else
-            render :new
-        end
+        @categories = Category.all
     end
 
     private
-    def params_category
-        params.require(:category).permit(:name)
+    def get_table
+        @table = Table.find_by(id: params[:table_id])
+        unless @table
+            redirect_to tables_path
+        end
     end
 end

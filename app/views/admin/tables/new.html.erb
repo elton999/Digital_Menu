@@ -2,7 +2,7 @@
     <div  class="col s4 push-s4">
         <h2>Register a new table</h2>
         
-        <%= form_for @table do |f| %>
+        <%= form_for @table, url: admin_tables_path do |f| %>
             <p>
                 <%= f.label :number %> <br/>
                 <%= f.number_field :number, value: @last_table_number %>

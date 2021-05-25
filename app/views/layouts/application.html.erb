@@ -27,10 +27,10 @@
 
               <% if current_user.present? && current_user.admin %>
                 
-                  <li><%= link_to "The Menu", dishes_path %></li>
-                  <li><%= link_to "Categories", categories_path %></li>
-                  <li><%= link_to "Tables", tables_path %></li>
-                  <li><%= link_to "Users", users_path %></li>
+                  <li><%= link_to "The Menu", admin_dishes_path %></li>
+                  <li><%= link_to "Categories", admin_categories_path %></li>
+                  <li><%= link_to "Tables", admin_tables_path %></li>
+                  <li><%= link_to "Users", admin_users_path %></li>
                 
               <% end %>
               
