@@ -1,5 +1,6 @@
 class TablesController < ApplicationController
     before_action :authenticate_user!
+    before_action :user_is_admin?, except: [:index]
 
     def index
         @tables = Table.all
