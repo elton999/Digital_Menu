@@ -5,4 +5,11 @@ class ApplicationController < ActionController::Base
             redirect_to new_user_session_path
         end
     end
+    
+    def get_table
+        @table = Table.find_by(id: params[:table_id])
+        unless @table
+            redirect_to tables_path
+        end
+    end
 end

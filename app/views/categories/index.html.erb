@@ -7,6 +7,7 @@
                     
                     <% category.dishes.each do |dish| %>
                         <div class="collapsible-body">
+                            <a href="<%= new_order_path(table_id: @table.id, dish_id: dish.id) %>">
                             <div class="row valign-wrapper">
                                 <div class="col s2">
                                   <img src="https://materializecss.com/images/yuna.jpg" alt="" class="circle responsive-img"> 
@@ -17,7 +18,8 @@
                                     <p><%= dish.description %></p>
                                   </span>
                                 </div>
-                              </div>
+                            </div>
+                            </a>
                         </div>
                     <% end %>
 

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :users
   resources :tables, only: [:index]
   resources :categories, only: [:index]
-  resources :orders
+  resources :orders, only: [:index, :new, :create]
 
   # admin
   namespace :admin do 
