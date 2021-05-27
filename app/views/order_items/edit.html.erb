@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col l4 push-l4 s12">
+        <div class="card">
+            <div class="card-image">
+                <img src="https://materializecss.com/images/yuna.jpg">
+                <span class="card-title"><%= @dish.name %></span>
+            </div>
+            <div class="card-content">
+                <p>
+                    <%= @dish.description %> <br/>
+                </p>
+                <%= form_for @order_item, url: order_order_item_path(id: @order_item, order_id: @order.id, table_id: @table.id, dish_id: @dish.id) do |f| %>
+                    <%= render partial: "order_items/form", locals: {f: f} %>
+                    <p>
+                        <%= f.submit "save", class: "waves-effect waves-light btn" %>
+                    </p>
+
+                <%end%>
+            </div>
+        </div>
+    </div>
+</div>

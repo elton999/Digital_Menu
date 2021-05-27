@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_25_184407) do
+ActiveRecord::Schema.define(version: 2021_05_27_214732) do
 
   create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", default: "", null: false
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 2021_05_25_184407) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
     t.bigint "table_id", null: false
+    t.boolean "close_order"
+    t.boolean "delivered"
     t.index ["table_id"], name: "index_orders_on_table_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end

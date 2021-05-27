@@ -1,0 +1,6 @@
+<p>
+    <%= f.label :quantity, 'Quantity' %><br/>
+    <%= f.number_field :quantity, value: 1 %>
+</p>
+<%= f.hidden_field :dish_id, value: @dish.id %>
+<%= f.hidden_field :order_id, value: @order.id %>

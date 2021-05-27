@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   resources :users
   resources :tables, only: [:index]
   resources :categories, only: [:index]
-  resources :orders, only: [:index, :new, :create]
+  resources :orders, only: [:index, :update] do 
+    resources :order_items, only: [:new, :create, :edit, :update]
+  end
 
   # admin
   namespace :admin do 
