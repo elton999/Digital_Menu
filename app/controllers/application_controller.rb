@@ -15,9 +15,9 @@ class ApplicationController < ActionController::Base
 
     def get_order
         unless params[:order_id]
-            @order = Order.find_by(table_id: @table.id, user_id: current_user.id, close_order: false)
+            @order = Order.find_by(table_id: @table.id, user_id: current_user.id, delivered: false)
         else
-            @order = Order.find_by(id: params[:order_id], table_id: @table.id, user_id: current_user.id, close_order: false)
+            @order = Order.find_by(id: params[:order_id], table_id: @table.id, user_id: current_user.id, delivered: false)
         end
             
         unless @order
