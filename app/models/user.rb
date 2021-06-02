@@ -7,4 +7,10 @@ class User < ApplicationRecord
   validates :name, presence: true
 
   has_many :order
+
+  before_validation :make_first_user_admin
+
+  def make_first_user_admin
+    self.admin = User.all.count == 0 && self.admin == nil ? true : self.admin 
+  end
 end
