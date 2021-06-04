@@ -13,4 +13,8 @@ class User < ApplicationRecord
   def make_first_user_admin
     self.admin = User.all.count == 0 && self.admin == nil ? true : self.admin 
   end
+
+  def self.no_users
+    User.all.count == 0
+  end
 end

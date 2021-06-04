@@ -18,7 +18,7 @@ class Admin::TablesController < ApplicationController
     def create
         @table = Table.new table_params
         if @table.save
-            redirect_to tables_path
+            redirect_to admin_tables_path
         else
             flash[:alert] = "Can't save the table"
             render :index
@@ -30,7 +30,7 @@ class Admin::TablesController < ApplicationController
         if(table && @table.destroy)
             flash[:alert] = "the was deleted"
         end
-        redirect_to tables_path
+        redirect_to admin_tables_path
     end
 
     private

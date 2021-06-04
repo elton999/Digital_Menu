@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    #before_action :has_users?
+    before_action :has_users?
     before_action :configure_permitted_parameters, if: :devise_controller?
 
     private
@@ -17,16 +17,7 @@ class ApplicationController < ActionController::Base
     end
 
     def get_order
-        unless params[:order_id]
-            @order = Order.find_by(table_id: @table.id, user_id: current_user.id, close_order: false, delivered: false)
-        else
-            @order = Order.find_by(id: params[:order_id], table_id: @table.id, user_id: current_user.id, close_order: false, delivered: false)
-        end
-            
-        unless @order
-            Order.create [user_id: current_user.id, table_id: @table.id, close_order: false, delivered: false]
-            @order = Order.find_by(table_id: @table.id, user_id: current_user.id, close_order: false)
-        end
+        @order = Order.get_from_user_and_table current_user.id, @table.id
     end
 
     def get_dish
@@ -37,8 +28,17 @@ class ApplicationController < ActionController::Base
     end
 
     def has_users?
-        if User.all.count == 0
+        if User.no_users && request.path == "/"
             redirect_to new_user_registration_path
+        end
+    end
+
+
+    def after_sign_in_path_for(resource)
+        if current_user.admin
+            admin_dishes_path
+        else
+            tables_path
         end
     end
 

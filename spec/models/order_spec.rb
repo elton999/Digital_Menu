@@ -24,10 +24,10 @@ RSpec.describe Order, type: :model do
       Table.create([number: 1])
 
       user_id = User.all.first.id
-      table_id = Table.find_by(number: 1).id
+      table_id = Table.all.first.id
   
       order = Order.get_from_user_and_table(user_id, table_id)
-      expect(order).to be_truthy  
+      expect(order.count).to be 0  
     end
 
     it "with an order created before" do
@@ -35,7 +35,7 @@ RSpec.describe Order, type: :model do
       Table.create([number: 1])
 
       user_id = User.all.first.id
-      table_id = Table.find_by(number: 1).id
+      table_id = Table.all.first.id
 
       Order.create_a_new(user_id, table_id)
       order_created_before = Order.opened(user_id, table_id)

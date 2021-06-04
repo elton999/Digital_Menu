@@ -14,7 +14,7 @@ class Admin::DishesController < ApplicationController
     def create
         @dish = Dish.new params_dish
         if @dish.save
-            redirect_to dishes_path
+            redirect_to admin_dishes_path
         else
             render :new
         end

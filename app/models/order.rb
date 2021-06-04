@@ -9,11 +9,10 @@ class Order < ApplicationRecord
 
     def self.get_from_user_and_table(user_id, table_id)
         order = Order.opened(user_id, table_id)
-        if !order && User.find_by(id: user_id) && Table.find_by(id: table_id)
+        if order.blank? && User.find_by(id: user_id) && Table.find_by(id: table_id)
             create_a_new(user_id, table_id)
             order = Order.opened(user_id, table_id)
         end
-
         order
     end
     

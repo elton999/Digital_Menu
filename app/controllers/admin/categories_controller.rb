@@ -16,7 +16,7 @@ class Admin::CategoriesController < ApplicationController
     def create
         @category = Category.new params_category
         if @category.save
-            redirect_to  categories_path
+            redirect_to  admin_categories_path
         else
             render :new
         end
