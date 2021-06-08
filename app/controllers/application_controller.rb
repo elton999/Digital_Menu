@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
     end
 
     def has_users?
-        if User.no_users && request.path == "/"
+        if User.no_users? && request.path == "/"
             redirect_to new_user_registration_path
         end
     end

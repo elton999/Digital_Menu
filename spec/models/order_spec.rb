@@ -27,7 +27,7 @@ RSpec.describe Order, type: :model do
       table_id = Table.all.first.id
   
       order = Order.get_from_user_and_table(user_id, table_id)
-      expect(order.count).to be 0  
+      expect(order.blank?).to be_falsy  
     end
 
     it "with an order created before" do
@@ -43,6 +43,7 @@ RSpec.describe Order, type: :model do
       order = Order.get_from_user_and_table(user_id, table_id)
       expect(order.id).to be order_created_before.id   
     end
+    
   end
 
 end

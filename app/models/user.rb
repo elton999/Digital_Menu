@@ -11,10 +11,10 @@ class User < ApplicationRecord
   before_validation :make_first_user_admin
 
   def make_first_user_admin
-    self.admin = User.all.count == 0 && self.admin == nil ? true : self.admin 
+    self.admin = User.no_users? && self.admin == nil ? true : self.admin 
   end
 
-  def self.no_users
+  def self.no_users?
     User.all.count == 0
   end
 end
